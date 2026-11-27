@@ -1,0 +1,10 @@
+{
+	"description" : "Mapa animado do meu Silakka54 no Vial (ABNT2), mostrando as camadas Fn e Caps + Enter.",
+	"file" : "index.html",
+	"general" : { "properties" : {} },
+	"preview" : "preview.gif",
+	"tags" : [ "Minimalist" ],
+	"title" : "KeyMap Dogla",
+	"type" : "web",
+	"visibility" : "private"
+}

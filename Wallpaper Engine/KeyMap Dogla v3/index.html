@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>KeyMap Dogla</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#141414;overflow:hidden}
+#palco{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:0 0;font-family:Archivo,"Segoe UI",Arial,sans-serif;color:#EDE8DC}
+.k{position:absolute;box-sizing:border-box;border-radius:10px;transition:transform 120ms ease,box-shadow 120ms ease}
+.k span{position:absolute;font-weight:600;transition:opacity 500ms ease}
+.b{left:9px;top:6px}
+.s{right:8px;top:9px;font-size:13px;text-align:right}
+.f{left:8px;right:8px;bottom:7px;font-size:12px;line-height:1.15}
+.case{position:absolute;border-radius:22px}
+.lbl{transition:opacity 500ms ease}
+</style>
+</head>
+<body>
+<div id="palco">
+  <div style="position:absolute;left:96px;top:72px">
+    <div style="font-size:60px;line-height:1;font-weight:800;letter-spacing:-1.5px">KeyMap Dogla</div>
+    <div style="margin-top:10px;font-size:19px;color:#A9A49A">Meu Silakka54 no Vial, layout ABNT2.</div>
+  </div>
+  <div style="position:absolute;right:96px;top:60px;display:flex;align-items:center;gap:18px">
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;font-size:14px;font-weight:600">
+      <span class="lbl" id="lSym" style="color:#F0A548">segurando Caps + Enter</span>
+      <span class="lbl" id="lBase" style="color:#EDE8DC">tecla normal</span>
+      <span class="lbl" id="lFn" style="color:#B9A2E6">segurando Fn</span>
+    </div>
+    <div style="position:relative;width:112px;height:112px;border-radius:12px;background:#EDE8DC;box-shadow:0 5px 0 #8F8A80;color:#3B3B3B">
+      <span style="position:absolute;left:12px;top:8px;font-size:32px;font-weight:600">E</span>
+      <span style="position:absolute;right:12px;top:13px;font-size:13px;font-weight:600;color:#A65A0A">e-mail</span>
+      <span style="position:absolute;left:12px;bottom:10px;font-size:13px;font-weight:600;color:#6A4C9C">sel. tudo</span>
+    </div>
+  </div>
+  <div id="teclado"></div>
+  <div style="position:absolute;left:96px;bottom:56px;font-size:14px;color:#A9A49A">Fn + Caps + Enter abre a camada 3, que ainda tá vazia.</div>
+  <div style="position:absolute;right:96px;bottom:56px;font-size:14px;font-weight:600;color:#A9A49A">github.com/DouglasSerrao</div>
+</div>
+<script>
+(function(){
+  var palco = document.getElementById('palco');
+  function ajustar(){
+    var e = Math.min(innerWidth/1600, innerHeight/900);
+    palco.style.transform = 'scale(' + e + ') translate(-800px,-450px)';
+  }
+  addEventListener('resize', ajustar); ajustar();
+
+  var fnColor='#6A4C9C', symColor='#A65A0A', caseColor='#22251F';
+  var U=76, G=8, P=U+G;
+  var COR={tab:['#2E7D32','#FFFFFF'],shift:['#4DB6C6','#0F2A2E'],ctrl:['#C62828','#FFFFFF'],bksp:['#C33A1F','#FFFFFF'],
+    lilas:['#A88FD0','#1E1430'],laranja:['#EE9B2F','#2A1700'],preta:['#1C1C1C','#EDE8DC'],esc:['#F7F6F2','#3B3B3B']};
+  var left=[
+    [['Esc','','','esc'],['1','F1'],['2','F2'],['3','F3'],['4','F4'],['5','F5']],
+    [['Tab',"' \"",'','tab'],['Q','salvar'],['W','buscar'],['E','sel. tudo','e-mail'],['R','nova aba','R$'],['T','reabrir aba']],
+    [['Shift','','','shift'],['A','Home'],['S','PgDn'],['D','PgUp'],['F','End'],['G','Insert']],
+    [['Ctrl','','','ctrl'],['Z','desfazer'],['X','recortar'],['C','copiar'],['V','colar'],['B','refazer']]];
+  var right=[
+    [['6','F6'],['7','F7'],['8','F8'],['9','F9'],['0','F10'],['⌫','Delete','','bksp']],
+    [['Y'],['U','↑'],['I'],['O'],['P','F11'],['´ `','F12','[ {']],
+    [['H','←'],['J','↓'],['K','→'],['L'],['Ç'],['~ ^','','] }']],
+    [['N','Vol −'],['M','Vol +'],[', <','−'],['. >','+'],['/ ?','|'],['; :','\\']]];
+  var lThumb=[['Alt','','','lilas'],['Win','','','laranja'],['Espaço','Mute','','preta']];
+  var rThumb=[['Enter','','','preta'],['Caps','','','laranja'],['Fn','','','lilas']];
+  var lStag=[18,18,6,0,6,12], rStag=[12,6,0,6,18,18];
+  var x0L=200, x0R=904, y0=300, ty=y0+4*P+28;
+  var t = document.getElementById('teclado');
+  function caixa(x,y,w,h){var d=document.createElement('div');d.className='case';d.style.cssText='left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px;background:'+caseColor;t.appendChild(d);}
+  var bodyH=3*P+U+18+44;
+  caixa(x0L-22,y0-22,6*P-G+44,bodyH);
+  caixa(x0L+3*P+34-22,y0+2*P,3*P-G+62,ty-y0-2*P+U+72);
+  caixa(x0R-22,y0-22,6*P-G+44,bodyH);
+  caixa(x0R-34-40,y0+2*P,3*P-G+62,ty-y0-2*P+U+72);
+  var teclas=[];
+  function add(k,x,y,rot,h){
+    rot=rot||0; h=h||U;
+    var b=k[0],f=k[1]||'',s=k[2]||'',kind=k[3]||'';
+    var c=COR[kind]||['#EDE8DC','#3B3B3B'], colorida=!!COR[kind] && kind!=='esc';
+    var d=document.createElement('div'); d.className='k';
+    d.style.cssText='left:'+x+'px;top:'+y+'px;width:'+U+'px;height:'+h+'px;background:'+c[0]+';color:'+c[1];
+    var sb=document.createElement('span'); sb.className='b'; sb.textContent=b; sb.style.fontSize=(b.length>3?15:23)+'px';
+    var ss=document.createElement('span'); ss.className='s'; ss.textContent=s; ss.style.color=colorida?c[1]:symColor;
+    var sf=document.createElement('span'); sf.className='f'; sf.textContent=f; sf.style.color=colorida?c[1]:fnColor;
+    d.appendChild(sb); d.appendChild(ss); d.appendChild(sf); t.appendChild(d);
+    teclas.push({b:b,kind:kind,rot:rot,el:d,sb:sb,ss:ss,sf:sf});
+  }
+  left.forEach(function(row,r){row.forEach(function(k,c){add(k,x0L+c*P,y0+r*P+lStag[c]);});});
+  right.forEach(function(row,r){row.forEach(function(k,c){add(k,x0R+c*P,y0+r*P+rStag[c]);});});
+  lThumb.forEach(function(k,i){add(k,x0L+(3+i)*P+34+(i===2?10:0),ty+(i===2?14:0),i===2?22:0,i===2?96:U);});
+  rThumb.forEach(function(k,i){add(k,x0R+i*P-34-(i===0?10:0),ty+(i===0?14:0),i===0?-22:0,i===0?96:U);});
+
+  var inicio=Date.now();
+  var digitar=[[700,'D'],[1200,'O'],[1700,'G'],[2200,'L'],[2700,'A']];
+  function quadro(){
+    var tt=(Date.now()-inicio)%14000;
+    var fase=(tt>=4000&&tt<8000)?'fn':(tt>=8500&&tt<12500)?'sym':'base';
+    var tecla='';
+    digitar.forEach(function(d){ if(tt>=d[0]&&tt<d[0]+220) tecla=d[1]; });
+    teclas.forEach(function(k){
+      var apertada=(fase==='fn'&&k.b==='Fn')||(fase==='sym'&&(k.b==='Caps'||k.b==='Enter'))||(fase==='base'&&k.b===tecla);
+      k.el.style.transform='translateY('+(apertada?4:0)+'px) rotate('+k.rot+'deg)';
+      k.el.style.boxShadow='0 '+(apertada?0:4)+'px 0 rgba(0,0,0,0.45)'+(k.kind==='esc'?', 0 0 0 3px #A9A49A':'');
+      k.sb.style.opacity=(apertada||fase==='base')?1:0.15;
+      k.sf.style.opacity=fase==='fn'?1:0;
+      k.ss.style.opacity=fase==='sym'?1:0;
+    });
+    document.getElementById('lBase').style.opacity=fase==='base'?1:0.3;
+    document.getElementById('lFn').style.opacity=fase==='fn'?1:0.3;
+    document.getElementById('lSym').style.opacity=fase==='sym'?1:0.3;
+  }
+  quadro(); setInterval(quadro,100);
+})();
+</script>
+</body>
+</html>
