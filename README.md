@@ -9,3 +9,5 @@ No polegar direito ficam Enter, Caps Lock e Fn, de dentro pra fora. Segurando o 
 Pra usar no seu, abre o Vial, vai em File > Load saved layout e escolhe o arquivo que tá na pasta Vial. A macro de e-mail tá vazia aqui, então grava o seu nela se quiser.
 
 O wallpaper animado da versão 3 fica em `Wallpaper Engine/KeyMap Dogla v3`. É só copiar a pasta pra `wallpaper_engine\projects\myprojects`. As versões antigas do mapa e do wallpaper continuam aqui no repositório.
+
+Tem também uma versão com patinhas de gato em `Wallpaper Engine/KeyMap Dogla patinhas`. Três gatos apertam as teclas mostrando as camadas e batucam junto com a música que estiver tocando no PC. No canto tem um gatinho que segue o mouse com os olhos, dorme quando você some e coloca fone quando toca música. Clica nele pra fazer carinho, mas não exagera.
