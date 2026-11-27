@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>KeyMap Dogla com patinhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;height:100%;background:#141414;overflow:hidden}
+#palco{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform-origin:0 0;font-family:Archivo,"Segoe UI",Arial,sans-serif;color:#EDE8DC;overflow:hidden}
+.k{position:absolute;box-sizing:border-box;border-radius:10px;transition:transform 90ms ease,box-shadow 90ms ease}
+.k span{position:absolute;font-weight:600;transition:opacity 500ms ease}
+.b{left:9px;top:6px}
+.s{right:8px;top:9px;font-size:13px;text-align:right}
+.f{left:8px;right:8px;bottom:7px;font-size:12px;line-height:1.15}
+.case{position:absolute;border-radius:22px}
+.lbl{transition:opacity 500ms ease}
+.pata{position:absolute;width:68px;border-radius:34px;box-shadow:0 0 0 3px rgba(0,0,0,.35)}
+.pata svg{position:absolute;left:0;top:0}
+.coracao{position:absolute;pointer-events:none;opacity:0;animation:sobe 1600ms cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes sobe{0%{transform:translate(0,0) scale(.2) rotate(0deg);opacity:0}12%{transform:translate(calc(var(--dx)*.2px),-14px) scale(1.25) rotate(calc(var(--r)*1deg));opacity:1}35%{transform:translate(calc(var(--dx)*.6px),-50px) scale(1) rotate(calc(var(--r)*-1deg))}60%{transform:translate(calc(var(--dx)*.9px),-90px) scale(1) rotate(calc(var(--r)*1deg));opacity:1}100%{transform:translate(calc(var(--dx)*1px),-150px) scale(.8) rotate(0deg);opacity:0}}
+#gato{transform-origin:60px 106px;transition:transform 600ms ease}
+#gato.dormindo{animation:respira 3200ms ease-in-out infinite}
+@keyframes respira{0%,100%{transform:rotate(-7deg) scale(1,1)}50%{transform:rotate(-7deg) scale(1.03,1.05)}}
+#gato.bravo{animation:treme 120ms linear infinite}
+@keyframes treme{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(-2px,1px) rotate(-2deg)}50%{transform:translate(2px,-1px) rotate(1deg)}75%{transform:translate(-1px,-1px) rotate(2deg)}100%{transform:translate(1px,1px) rotate(0)}}
+#gato.bote{animation:bote 380ms cubic-bezier(.2,1.6,.4,1)}
+@keyframes bote{0%{transform:none}40%{transform:translate(var(--bx),var(--by)) scale(1.15)}100%{transform:none}}
+#gato.bravo .orelha:first-of-type,#gato.bote .orelha:first-of-type{transform:rotate(-38deg)}
+#gato.bravo .orelha:nth-of-type(2),#gato.bote .orelha:nth-of-type(2){transform:rotate(38deg)}
+.balao{position:absolute;font-weight:800;pointer-events:none;letter-spacing:1px;animation:balao 900ms cubic-bezier(.2,1.5,.4,1) forwards}
+@keyframes balao{0%{opacity:0;transform:scale(.3) rotate(-8deg)}25%{opacity:1;transform:scale(1.15) rotate(4deg)}70%{opacity:1;transform:scale(1) rotate(-2deg)}100%{opacity:0;transform:scale(1) translateY(-10px)}}
+.mordida{position:absolute;pointer-events:none;animation:mordida 1800ms ease-out forwards}
+@keyframes mordida{0%{opacity:0;transform:scale(1.4)}10%{opacity:1;transform:scale(1)}70%{opacity:1}100%{opacity:0}}
+#gato.curtindo{animation:balanca 900ms ease-in-out infinite}
+@keyframes balanca{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(6deg) translateY(-3px)}}
+.nota{position:absolute;font-size:26px;font-weight:700;pointer-events:none;animation:nota 1800ms ease-out forwards}
+@keyframes nota{0%{opacity:0;transform:translate(0,0) rotate(-10deg) scale(.6)}15%{opacity:1;transform:translate(-6px,-14px) rotate(8deg) scale(1)}50%{transform:translate(-24px,-50px) rotate(-8deg)}100%{opacity:0;transform:translate(-40px,-100px) rotate(10deg)}}
+#gato.acorda{animation:acorda 500ms cubic-bezier(.3,1.6,.5,1)}
+@keyframes acorda{0%{transform:rotate(-7deg)}35%{transform:translateY(-16px) scale(.95,1.08)}100%{transform:none}}
+.z{animation:zz 3000ms ease-in-out infinite;opacity:0}
+.z2{animation-delay:1000ms}.z3{animation-delay:2000ms}
+@keyframes zz{0%{opacity:0;transform:translate(0,0) scale(.6)}20%{opacity:1}100%{opacity:0;transform:translate(14px,-34px) scale(1.2)}}
+#gato.pula{animation:pula 650ms cubic-bezier(.3,1.4,.5,1)}
+@keyframes pula{0%{transform:scale(1,1)}18%{transform:scale(1.12,.86) translateY(6px)}42%{transform:scale(.92,1.1) translateY(-14px)}68%{transform:scale(1.04,.97) translateY(0)}84%{transform:scale(.99,1.01)}100%{transform:scale(1,1)}}
+#gato.pula .orelha{animation:orelha 650ms ease}
+.orelha{transform-box:fill-box;transform-origin:50% 100%;transition:transform 200ms ease}
+@keyframes orelha{0%,100%{transform:rotate(0)}30%{transform:rotate(-14deg)}60%{transform:rotate(10deg)}}
+.prrr{position:absolute;font-size:15px;font-weight:600;color:#A9A49A;pointer-events:none;animation:prrr 1200ms ease-out forwards}
+@keyframes prrr{0%{opacity:0;transform:translateX(0)}20%{opacity:1}100%{opacity:0;transform:translateX(-30px) translateY(-8px)}}
+#gato{cursor:pointer}
+</style>
+</head>
+<body>
+<div id="palco">
+  <div style="position:absolute;left:96px;top:72px">
+    <div style="font-size:60px;line-height:1;font-weight:800;letter-spacing:-1.5px">KeyMap Dogla</div>
+    <div style="margin-top:10px;font-size:19px;color:#A9A49A">Meu Silakka54 no Vial, layout ABNT2.</div>
+  </div>
+  <div style="position:absolute;right:96px;top:60px;display:flex;align-items:center;gap:18px">
+    <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-end;font-size:14px;font-weight:600">
+      <span class="lbl" id="lSym" style="color:#F0A548">segurando Caps + Enter</span>
+      <span class="lbl" id="lBase" style="color:#EDE8DC">tecla normal</span>
+      <span class="lbl" id="lFn" style="color:#B9A2E6">segurando Fn</span>
+    </div>
+    <div style="position:relative;width:112px;height:112px;border-radius:12px;background:#EDE8DC;box-shadow:0 5px 0 #8F8A80;color:#3B3B3B">
+      <span style="position:absolute;left:12px;top:8px;font-size:32px;font-weight:600">E</span>
+      <span style="position:absolute;right:12px;top:13px;font-size:13px;font-weight:600;color:#A65A0A">e-mail</span>
+      <span style="position:absolute;left:12px;bottom:10px;font-size:13px;font-weight:600;color:#6A4C9C">sel. tudo</span>
+    </div>
+  </div>
+  <div id="teclado"></div>
+  <div id="patas"></div>
+  <div style="position:absolute;left:96px;bottom:56px;font-size:14px;color:#A9A49A">Fn + Caps + Enter abre a camada 3, que ainda tá vazia.</div>
+  <div style="position:absolute;right:250px;bottom:56px;font-size:14px;font-weight:600;color:#A9A49A">github.com/DouglasSerrao</div>
+  <svg id="gato" width="140" height="110" viewBox="0 0 140 110" overflow="visible" style="position:absolute;right:96px;bottom:20px" aria-hidden="true">
+    <g class="orelha"><path d="M22 44 L18 8 L48 30 Z" fill="#3A3A3A"></path><path d="M24 36 L23 17 L39 30 Z" fill="#F4A7B4"></path></g>
+    <g class="orelha"><path d="M98 44 L102 8 L72 30 Z" fill="#3A3A3A"></path><path d="M96 36 L97 17 L81 30 Z" fill="#F4A7B4"></path></g>
+    <ellipse cx="60" cy="66" rx="46" ry="40" fill="#3A3A3A"></ellipse>
+    <g id="fone" style="display:none">
+      <path d="M14 54 Q60 -8 106 54" stroke="#EE9B2F" stroke-width="7" fill="none" stroke-linecap="round"></path>
+      <rect x="3" y="44" width="20" height="32" rx="9" fill="#A88FD0"></rect>
+      <rect x="97" y="44" width="20" height="32" rx="9" fill="#A88FD0"></rect>
+    </g>
+    <g id="olhosAbertos">
+      <ellipse cx="42" cy="60" rx="12" ry="13" fill="#E9F27A"></ellipse>
+      <ellipse cx="78" cy="60" rx="12" ry="13" fill="#E9F27A"></ellipse>
+      <ellipse id="pupE" cx="42" cy="60" rx="4" ry="8" fill="#111"></ellipse>
+      <ellipse id="pupD" cx="78" cy="60" rx="4" ry="8" fill="#111"></ellipse>
+    </g>
+    <g id="olhosFelizes" style="display:none">
+      <path d="M31 64 Q42 52 53 64" stroke="#E9F27A" stroke-width="4" fill="none" stroke-linecap="round"></path>
+      <path d="M67 64 Q78 52 89 64" stroke="#E9F27A" stroke-width="4" fill="none" stroke-linecap="round"></path>
+      <ellipse cx="28" cy="76" rx="7" ry="4" fill="#F4A7B4" opacity="0.7"></ellipse>
+      <ellipse cx="92" cy="76" rx="7" ry="4" fill="#F4A7B4" opacity="0.7"></ellipse>
+    </g>
+    <g id="olhosBravos" style="display:none">
+      <path d="M30 56 Q42 50 54 58 Q42 70 30 56 Z" fill="#F2C230"></path>
+      <path d="M66 58 Q78 50 90 56 Q78 70 66 58 Z" fill="#F2C230"></path>
+      <ellipse cx="42" cy="59" rx="1.8" ry="6" fill="#111"></ellipse>
+      <ellipse cx="78" cy="59" rx="1.8" ry="6" fill="#111"></ellipse>
+      <path d="M27 46 L52 54" stroke="#111" stroke-width="4" stroke-linecap="round"></path>
+      <path d="M93 46 L68 54" stroke="#111" stroke-width="4" stroke-linecap="round"></path>
+      <path d="M46 82 Q60 96 74 82 Q60 88 46 82 Z" fill="#7A1F2B"></path>
+      <path d="M50 83 L53 90 L56 84 Z" fill="#FFFFFF"></path>
+      <path d="M70 83 L67 90 L64 84 Z" fill="#FFFFFF"></path>
+    </g>
+    <g id="olhosFechados" style="display:none">
+      <path d="M31 62 Q42 70 53 62" stroke="#E9F27A" stroke-width="3" fill="none" stroke-linecap="round"></path>
+      <path d="M67 62 Q78 70 89 62" stroke="#E9F27A" stroke-width="3" fill="none" stroke-linecap="round"></path>
+    </g>
+    <path d="M56 78 L64 78 L60 83 Z" fill="#F4A7B4"></path>
+    <path d="M60 83 Q55 89 50 86 M60 83 Q65 89 70 86" stroke="#111" stroke-width="2" fill="none" stroke-linecap="round"></path>
+    <g id="zzz" style="display:none" fill="#A9A49A" font-weight="700"><text class="z" x="92" y="40" font-size="13">z</text><text class="z z2" x="96" y="38" font-size="16">z</text><text class="z z3" x="100" y="36" font-size="19">z</text></g>
+  </svg>
+</div>
+<script>
+(function(){
+  var palco=document.getElementById('palco'), escala=1;
+  function ajustar(){ escala=Math.min(innerWidth/1600,innerHeight/900); palco.style.transform='scale('+escala+') translate(-800px,-450px)'; }
+  addEventListener('resize',ajustar); ajustar();
+
+  var fnColor='#6A4C9C', symColor='#A65A0A', caseColor='#22251F';
+  var U=76,G=8,P=U+G;
+  var COR={tab:['#2E7D32','#FFFFFF'],shift:['#4DB6C6','#0F2A2E'],ctrl:['#C62828','#FFFFFF'],bksp:['#C33A1F','#FFFFFF'],
+    lilas:['#A88FD0','#1E1430'],laranja:['#EE9B2F','#2A1700'],preta:['#1C1C1C','#EDE8DC'],esc:['#F7F6F2','#3B3B3B']};
+  var left=[
+    [['Esc','','','esc'],['1','F1'],['2','F2'],['3','F3'],['4','F4'],['5','F5']],
+    [['Tab',"' \"",'','tab'],['Q','salvar'],['W','buscar'],['E','sel. tudo','e-mail'],['R','nova aba','R$'],['T','reabrir aba']],
+    [['Shift','','','shift'],['A','Home'],['S','PgDn'],['D','PgUp'],['F','End'],['G','Insert']],
+    [['Ctrl','','','ctrl'],['Z','desfazer'],['X','recortar'],['C','copiar'],['V','colar'],['B','refazer']]];
+  var right=[
+    [['6','F6'],['7','F7'],['8','F8'],['9','F9'],['0','F10'],['⌫','Delete','','bksp']],
+    [['Y'],['U','↑'],['I'],['O'],['P','F11'],['´ `','F12','[ {']],
+    [['H','←'],['J','↓'],['K','→'],['L'],['Ç'],['~ ^','','] }']],
+    [['N','Vol −'],['M','Vol +'],[', <','−'],['. >','+'],['/ ?','|'],['; :','\\']]];
+  var lThumb=[['Alt','','','lilas'],['Win','','','laranja'],['Espaço','Mute','','preta']];
+  var rThumb=[['Enter','','','preta'],['Caps','','','laranja'],['Fn','','','lilas']];
+  var lStag=[18,18,6,0,6,12], rStag=[12,6,0,6,18,18];
+  var x0L=200,x0R=904,y0=300,ty=y0+4*P+28;
+  var tec=document.getElementById('teclado');
+  function caixa(x,y,w,h){var d=document.createElement('div');d.className='case';d.style.cssText='left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+h+'px;background:'+caseColor;tec.appendChild(d);}
+  var bodyH=3*P+U+18+44;
+  caixa(x0L-22,y0-22,6*P-G+44,bodyH); caixa(x0L+3*P+34-22,y0+2*P,3*P-G+62,ty-y0-2*P+U+72);
+  caixa(x0R-22,y0-22,6*P-G+44,bodyH); caixa(x0R-34-40,y0+2*P,3*P-G+62,ty-y0-2*P+U+72);
+  var teclas=[], centros={}, porNome={};
+  function add(k,x,y,rot,h,col){
+    rot=rot||0; h=h||U;
+    var b=k[0],f=k[1]||'',s=k[2]||'',kind=k[3]||'';
+    var c=COR[kind]||['#EDE8DC','#3B3B3B'], colorida=!!COR[kind]&&kind!=='esc';
+    var d=document.createElement('div'); d.className='k';
+    d.style.cssText='left:'+x+'px;top:'+y+'px;width:'+U+'px;height:'+h+'px;background:'+c[0]+';color:'+c[1];
+    var sb=document.createElement('span'); sb.className='b'; sb.textContent=b; sb.style.fontSize=(b.length>3?15:23)+'px';
+    var ss=document.createElement('span'); ss.className='s'; ss.textContent=s; ss.style.color=colorida?c[1]:symColor;
+    var sf=document.createElement('span'); sf.className='f'; sf.textContent=f; sf.style.color=colorida?c[1]:fnColor;
+    d.appendChild(sb); d.appendChild(ss); d.appendChild(sf); tec.appendChild(d);
+    var o={b:b,kind:kind,rot:rot,el:d,sb:sb,ss:ss,sf:sf,col:col};
+    teclas.push(o); centros[b]=[x+U/2,y+h/2]; porNome[b]=o;
+  }
+  left.forEach(function(row,r){row.forEach(function(k,c){add(k,x0L+c*P,y0+r*P+lStag[c],0,U,c);});});
+  right.forEach(function(row,r){row.forEach(function(k,c){add(k,x0R+c*P,y0+r*P+rStag[c],0,U,6+c);});});
+  lThumb.forEach(function(k,i){add(k,x0L+(3+i)*P+34+(i===2?10:0),ty+(i===2?14:0),i===2?22:0,i===2?96:U,3+i);});
+  rThumb.forEach(function(k,i){add(k,x0R+i*P-34-(i===0?10:0),ty+(i===0?14:0),i===0?-22:0,i===0?96:U,6+i);});
+
+  // patinhas
+  var PATAS={
+    a:{base:[470,1010],pelo:'repeating-linear-gradient(0deg,#E08A3C 0 26px,#C46E26 26px 38px)'},
+    b:{base:[1130,1010],pelo:'#F2EEE6'},
+    c:{base:[800,1030],pelo:'#2A2A2A'}};
+  var svgPata='<svg width="68" height="60" viewBox="0 0 68 60"><ellipse cx="34" cy="36" rx="17" ry="13" fill="#F4A7B4"/><ellipse cx="13" cy="20" rx="7" ry="8" fill="#F4A7B4"/><ellipse cx="26" cy="11" rx="7" ry="8" fill="#F4A7B4"/><ellipse cx="42" cy="11" rx="7" ry="8" fill="#F4A7B4"/><ellipse cx="55" cy="20" rx="7" ry="8" fill="#F4A7B4"/></svg>';
+  var cont=document.getElementById('patas');
+  Object.keys(PATAS).forEach(function(id){var d=document.createElement('div');d.className='pata';d.style.background=PATAS[id].pelo;d.innerHTML=svgPata;cont.appendChild(d);PATAS[id].el=d;});
+
+  var ROTEIRO=[
+    ['a','D',300,900],['b','O',800,1400],['a','G',1300,1900],['b','L',1800,2400],['a','A',2300,2900],
+    ['b','Fn',3600,7600],['a','C',4300,5100],['a','V',5500,6300],['c','R',6400,7200],
+    ['b','Enter',8400,12200],['c','Caps',8500,12200],['a','R',9300,10100],['a','E',10500,11300],
+    ['a','Espaço',13000,13700],['b','Espaço',13500,14200],['a','Espaço',14000,14700],['b','Espaço',14500,15200]];
+  var ritmo=[]; // batidas da musica: [pata, tecla, inicio, fim] em tempo absoluto
+  function ext(a,z,agora,ida){
+    if(agora<a||agora>z) return 0;
+    if(agora<a+ida){var p=(agora-a)/ida, c1=1.6, c3=c1+1; return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2);}
+    if(agora>z-ida){var q=(z-agora)/ida;return 1-Math.pow(1-q,3);}
+    return 1;
+  }
+
+  // audio do Wallpaper Engine
+  var bandas=new Array(12).fill(0), grave=0, mediaGrave=0.05, ultimoSom=-1e9, ultimaBatida=0;
+  var TECLAS_BATUQUE=['D','F','J','K','S','L','G','H','Espaço','Enter','E','I','R','U'];
+  if(window.wallpaperRegisterAudioListener){
+    window.wallpaperRegisterAudioListener(function(a){
+      var agora=performance.now(), soma=0, i;
+      for(i=0;i<64;i++) soma+=a[i]+a[64+i];
+      for(var bnd=0;bnd<12;bnd++){var v=0;for(i=bnd*5;i<bnd*5+5;i++) v+=(a[i]+a[64+i])/2; bandas[bnd]=Math.min(1,v/5*1.6);}
+      grave=(a[0]+a[1]+a[2]+a[3]+a[64]+a[65]+a[66]+a[67])/8;
+      mediaGrave=mediaGrave*0.97+grave*0.03;
+      if(soma>0.6) ultimoSom=agora;
+      if(grave>0.18&&grave>mediaGrave*1.35&&agora-ultimaBatida>220){
+        ultimaBatida=agora;
+        if(agora-ultimaNota>550 && agora>=raiva){ ultimaNota=agora; nota(); }
+        var ids=['a','b','c'], id=ids[Math.floor(Math.random()*3)];
+        var livre=ritmo.every(function(r){return r[0]!==id||agora>r[3];});
+        if(livre){var k=TECLAS_BATUQUE[Math.floor(Math.random()*TECLAS_BATUQUE.length)];ritmo.push([id,k,agora,agora+340]);}
+      }
+    });
+  }
+
+  // gatinho no canto
+  var mouse=[800,450], ultimoMouse=performance.now(), piscar=0;
+  addEventListener('mousemove',function(e){
+    var r=palco.getBoundingClientRect();
+    mouse=[(e.clientX-r.left)/escala,(e.clientY-r.top)/escala]; ultimoMouse=performance.now();
+  });
+  var pupE=document.getElementById('pupE'), pupD=document.getElementById('pupD');
+  var abertos=document.getElementById('olhosAbertos'), fechados=document.getElementById('olhosFechados'), zzz=document.getElementById('zzz');
+  var gatoX=1600-96-140, gatoY=900-20-110, feliz=0, estavaDormindo=false, raiva=0, cliques=[];
+  var bravos=document.getElementById('olhosBravos'), fone=document.getElementById('fone'), ultimaNota=0, curtia=false;
+  function nota(){
+    var n=document.createElement('div'); n.className='nota'; n.textContent=Math.random()<.5?'\u266A':'\u266B';
+    n.style.color=Math.random()<.5?'#B9A2E6':'#F0A548';
+    n.style.left=(gatoX+10+Math.random()*40)+'px'; n.style.top=(gatoY+10)+'px';
+    palco.appendChild(n); setTimeout(function(){n.remove();},1900);
+  }
+  function balao(txt,cor,tam,x,y){var b=document.createElement('div');b.className='balao';b.textContent=txt;b.style.color=cor;b.style.fontSize=tam+'px';b.style.left=x+'px';b.style.top=y+'px';palco.appendChild(b);setTimeout(function(){b.remove();},950);}
+  function morder(){
+    var r=palco.getBoundingClientRect();
+    var mx=Math.min(mouse[0],gatoX-20), my=Math.min(mouse[1],gatoY+10), cx=gatoX+60, cy=gatoY+60, vx=mx-cx, vy=my-cy, d=Math.sqrt(vx*vx+vy*vy)||1;
+    gatoEl.style.setProperty('--bx',(vx/d*46).toFixed(0)+'px'); gatoEl.style.setProperty('--by',(vy/d*46).toFixed(0)+'px');
+    gatoEl.classList.remove('bravo'); void gatoEl.getBoundingClientRect(); gatoEl.classList.add('bote');
+    balao('NHAC!','#F06A8A',30,gatoX-70,gatoY-30);
+    var m=document.createElement('div'); m.className='mordida'; m.style.left=(mx-24)+'px'; m.style.top=(my-20)+'px';
+    m.innerHTML='<svg width="48" height="40" viewBox="0 0 48 40"><path d="M6 10 Q24 2 42 10" stroke="#C62828" stroke-width="2.5" fill="none" stroke-dasharray="4 4" stroke-linecap="round"/><path d="M6 30 Q24 38 42 30" stroke="#C62828" stroke-width="2.5" fill="none" stroke-dasharray="4 4" stroke-linecap="round"/><path d="M12 10 L14 16 M36 10 L34 16 M12 30 L14 24 M36 30 L34 24" stroke="#C62828" stroke-width="3" stroke-linecap="round"/></svg>';
+    palco.appendChild(m); setTimeout(function(){m.remove();},1900);
+  }
+  var felizes=document.getElementById('olhosFelizes');
+  var gatoEl=document.getElementById('gato');
+  function coracao(atraso,tam){
+    var c=document.createElement('div'); c.className='coracao';
+    var dx=Math.round(Math.random()*90-45);
+    c.style.setProperty('--dx',dx); c.style.setProperty('--r',Math.round(Math.random()*16+6));
+    c.style.animationDelay=atraso+'ms'; c.style.width=tam+'px';
+    c.style.left=(gatoX+60-tam/2)+'px'; c.style.top=(gatoY+4)+'px';
+    c.innerHTML='<svg width="100%" viewBox="0 0 32 30"><path d="M16 28 C6 20 1 14 1 8.5 C1 4 4.5 1 8.5 1 C11.5 1 14.5 3 16 6 C17.5 3 20.5 1 23.5 1 C27.5 1 31 4 31 8.5 C31 14 26 20 16 28 Z" fill="#F06A8A"/></svg>';
+    palco.appendChild(c); setTimeout(function(){c.remove();},1700+atraso);
+  }
+  addEventListener('mousedown',function(e){
+    var r=palco.getBoundingClientRect(), x=(e.clientX-r.left)/escala, y=(e.clientY-r.top)/escala;
+    if(x>gatoX&&x<gatoX+120&&y>gatoY&&y<gatoY+110){
+      var n=performance.now(); ultimoMouse=n;
+      if(n<raiva){ balao('!!','#F06A8A',22,gatoX+100,gatoY-6); return; }
+      cliques=cliques.filter(function(c){return n-c<3500;}); cliques.push(n);
+      if(cliques.length>=7){
+        cliques=[]; raiva=n+2800; feliz=0;
+        gatoEl.classList.remove('pula','dormindo','acorda','bote','curtindo'); curtia=false; estavaDormindo=false; void gatoEl.getBoundingClientRect(); gatoEl.classList.add('bravo');
+        balao('HSSS!','#F2C230',26,gatoX-60,gatoY-20);
+        setTimeout(morder,1100);
+        setTimeout(function(){ gatoEl.classList.remove('bote','bravo'); balao('hmpf','#A9A49A',16,gatoX-30,gatoY+10); },2800);
+        return;
+      }
+      feliz=n+1600;
+      gatoEl.classList.remove('pula','dormindo','acorda','curtindo'); curtia=false; estavaDormindo=false; void gatoEl.getBoundingClientRect(); gatoEl.classList.add('pula');
+      coracao(0,34); coracao(140,24); coracao(280,28);
+      var p=document.createElement('div'); p.className='prrr'; p.textContent='prrr'; p.style.left=(gatoX-36)+'px'; p.style.top=(gatoY+8)+'px'; palco.appendChild(p); setTimeout(function(){p.remove();},1300);
+    }
+  });
+
+  var inicio=performance.now();
+  function quadro(){
+    var agora=performance.now();
+    var musica=agora-ultimoSom<2500;
+    var parado=agora-ultimoSom>60000 && agora-ultimoMouse>60000;
+    var tt=(agora-inicio)%16000;
+    var ativos=[];
+    if(musica){ ritmo=ritmo.filter(function(r){return agora<r[3]+50;}); ritmo.forEach(function(r){ativos.push([r[0],r[1],ext(r[2],r[3],agora,140)]);}); }
+    else if(parado){ ativos.push(['a','Espaço',0.55]); }
+    else { ROTEIRO.forEach(function(r){var e=ext(r[2],r[3],tt,320); if(e>0) ativos.push([r[0],r[1],e]);}); }
+    var apertadas={};
+    ativos.forEach(function(x){ if(x[2]>0.92) apertadas[x[1]]=true; });
+    var fase=apertadas['Fn']?'fn':(apertadas['Caps']&&apertadas['Enter'])?'sym':'base';
+    teclas.forEach(function(k){
+      var ap=!!apertadas[k.b];
+      var eq=musica?bandas[k.col<6?5-k.col:k.col-6]*3:0;
+      var dy=ap?4:eq;
+      k.el.style.transform='translateY('+dy.toFixed(1)+'px) rotate('+k.rot+'deg)';
+      k.el.style.boxShadow='0 '+Math.max(0,4-dy).toFixed(1)+'px 0 rgba(0,0,0,0.45)'+(k.kind==='esc'?', 0 0 0 3px #A9A49A':'');
+      k.sb.style.opacity=(ap||fase==='base')?1:0.15;
+      k.sf.style.opacity=fase==='fn'?1:0;
+      k.ss.style.opacity=fase==='sym'?1:0;
+    });
+    document.getElementById('lBase').style.opacity=fase==='base'?1:0.3;
+    document.getElementById('lFn').style.opacity=fase==='fn'?1:0.3;
+    document.getElementById('lSym').style.opacity=fase==='sym'?1:0.3;
+    Object.keys(PATAS).forEach(function(id){
+      var p=PATAS[id], alvo=null, e=0;
+      ativos.forEach(function(x){ if(x[0]===id&&x[2]>e){e=x[2];alvo=x[1];} });
+      var bx=p.base[0], by=p.base[1];
+      var t=alvo&&centros[alvo]?centros[alvo]:[bx,by-60];
+      var dx=t[0]-bx, dy2=t[1]-by, dist=Math.sqrt(dx*dx+dy2*dy2), ang=Math.atan2(dx,-dy2)*180/Math.PI + Math.sin(Math.min(1,e)*Math.PI)*(id==='b'?-7:7);
+      var L=Math.max(60,dist*e+40);
+      p.el.style.left=(bx-34)+'px'; p.el.style.top=(by-L)+'px'; p.el.style.height=(L+80)+'px';
+      p.el.style.transformOrigin='34px '+L+'px'; p.el.style.transform='rotate('+ang+'deg)';
+      var sq=e>0.95?'scale(1.12,0.88)':'scale(1,1)'; var sv=p.el.firstChild; sv.style.transformOrigin='34px 30px'; sv.style.transition='transform 90ms ease'; sv.style.transform=sq;
+    });
+    // olhos
+    var dorme=!musica && agora-ultimoMouse>120000;
+    var curte=musica && agora>=raiva && !(agora<feliz);
+    if(curte!==curtia){ if(curte){ gatoEl.classList.remove('dormindo','acorda'); estavaDormindo=false; gatoEl.classList.add('curtindo'); } else { gatoEl.classList.remove('curtindo'); } curtia=curte; }
+    if(agora>=raiva && dorme!==estavaDormindo){ gatoEl.classList.remove('dormindo','acorda'); void gatoEl.getBoundingClientRect(); gatoEl.classList.add(dorme?'dormindo':'acorda'); estavaDormindo=dorme; }
+    if(!dorme && Math.random()<0.004) piscar=agora+160;
+    var irritado=agora<raiva;
+    var contente=!irritado&&(agora<feliz||curte);
+    var fechado=!contente&&!irritado&&(dorme||agora<piscar);
+    abertos.style.display=(fechado||contente||irritado)?'none':''; fechados.style.display=fechado?'':'none'; felizes.style.display=contente?'':'none'; bravos.style.display=irritado?'':'none'; fone.style.display=musica?'':'none'; zzz.style.display=(dorme&&!contente&&!irritado)?'':'none';
+    [[pupE,42],[pupD,78]].forEach(function(pp){
+      var cx=gatoX+pp[1], cy=gatoY+60, vx=mouse[0]-cx, vy=mouse[1]-cy, d=Math.sqrt(vx*vx+vy*vy)||1, m=Math.min(6,d/40);
+      pp[0].setAttribute('cx',(pp[1]+vx/d*m).toFixed(1)); pp[0].setAttribute('cy',(60+vy/d*m*1.1).toFixed(1));
+    });
+    requestAnimationFrame(quadro);
+  }
+  requestAnimationFrame(quadro);
+})();
+</script>
+</body>
+</html>

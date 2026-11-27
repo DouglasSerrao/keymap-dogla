@@ -1,0 +1,10 @@
+{
+	"description" : "Mapa do meu Silakka54 no Vial (ABNT2) com patinhas de gato apertando as teclas. Reage a musica e tem um gatinho que segue o mouse.",
+	"file" : "index.html",
+	"general" : { "properties" : {}, "supportsaudioprocessing" : true },
+	"preview" : "preview.gif",
+	"tags" : [ "Animal", "Minimalist" ],
+	"title" : "KeyMap Dogla (patinhas)",
+	"type" : "web",
+	"visibility" : "private"
+}
