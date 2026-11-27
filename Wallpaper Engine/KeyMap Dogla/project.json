@@ -1,0 +1,97 @@
+{
+  "title": "KeyMap Dogla",
+  "description": "Mapa animado do teclado split Dogla: camadas Base, Fn e Símbolos. Reage ao mouse, ao áudio e mostra a música tocando.",
+  "file": "index.html",
+  "preview": "preview.gif",
+  "type": "web",
+  "tags": [
+    "Minimalist",
+    "Technology"
+  ],
+  "general": {
+    "supportsaudioprocessing": true,
+    "properties": {
+      "cordestaque": {
+        "order": 0,
+        "text": "Cor de destaque",
+        "type": "color",
+        "value": "0.949 0.651 0.353"
+      },
+      "cordoalbum": {
+        "order": 1,
+        "text": "Usar a cor da capa da música",
+        "type": "bool",
+        "value": false
+      },
+      "corfundo": {
+        "order": 2,
+        "text": "Cor do fundo",
+        "type": "color",
+        "value": "0.169 0.169 0.176"
+      },
+      "escala": {
+        "order": 3,
+        "text": "Tamanho do teclado (%)",
+        "type": "slider",
+        "min": 80,
+        "max": 160,
+        "value": 128,
+        "editable": true
+      },
+      "cicloautomatico": {
+        "order": 4,
+        "text": "Trocar camadas sozinho",
+        "type": "bool",
+        "value": true
+      },
+      "tempocamada": {
+        "order": 5,
+        "text": "Segundos por camada",
+        "type": "slider",
+        "min": 2,
+        "max": 20,
+        "value": 4,
+        "editable": true
+      },
+      "brilhomouse": {
+        "order": 6,
+        "text": "Brilho seguindo o mouse",
+        "type": "bool",
+        "value": true
+      },
+      "cliques": {
+        "order": 7,
+        "text": "Cliques nas teclas",
+        "type": "bool",
+        "value": true
+      },
+      "reagiraudio": {
+        "order": 8,
+        "text": "Reagir ao áudio",
+        "type": "bool",
+        "value": true
+      },
+      "sensibilidade": {
+        "order": 9,
+        "text": "Sensibilidade do áudio (%)",
+        "type": "slider",
+        "min": 20,
+        "max": 300,
+        "value": 100,
+        "editable": true
+      },
+      "mostrarmusica": {
+        "order": 10,
+        "text": "Mostrar música tocando",
+        "type": "bool",
+        "value": true
+      },
+      "mostrarhud": {
+        "order": 11,
+        "text": "Mostrar textos e indicadores",
+        "type": "bool",
+        "value": true
+      }
+    }
+  }
+}

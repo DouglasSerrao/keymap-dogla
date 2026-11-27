@@ -1,0 +1,23 @@
+KeyMap Dogla - arquivos atualizados (09/10/2026)
+
+Wallpaper Engine/KeyMap Dogla
+  Projeto pronto do wallpaper animado (index.html + project.json + preview.gif).
+  Para instalar em outro PC: copiar a pasta para
+  wallpaper_engine\projects\myprojects
+
+Video
+  keymap-dogla-wallpaper.mp4: loop de 12 s, 1920x1080, 60 fps.
+  keymap-dogla-wallpaper-ao-vivo.html: a mesma animacao rodando no navegador
+  (serve para o Lively Wallpaper ou para abrir direto).
+
+Vial
+  keymap-dogla-vial.vil: backup completo da configuracao do teclado
+  (camadas, combos, macros M0 = e-mail e M1 = "R$ ").
+  Para restaurar: Vial > File > Load saved layout.
+
+Mapa usado (conferido no Vial)
+  Camada 0: base ABNT2. Polegar direito, de dentro para fora: Enter, Caps Lock, Fn.
+  Camada 1: segure Fn.
+  Camada 2 (Simbolos): segure Caps Lock + Enter.
+    E = macro e-mail, R = macro "R$ ", tecla de acento agudo = [ {, tecla de til = ] }.
+  Camada 3: segure Fn na camada 2 (vazia por enquanto).
